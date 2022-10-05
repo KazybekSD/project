@@ -1,4 +1,20 @@
-const numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+"use strict";
+/* Задание на урок:
+1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
+
+2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
+отменить ответ или ввести название фильма длинее, чем 50 символов. Если это происходит - 
+возвращаем пользователя к вопросам опять. (К любой строке можно обратиться как 
+str.length - и получить её длину)
+
+3) При помощи условий проверить  personalMovieDB.count, и если он меньше 10 - вывести сообщение
+"Просмотрено довольно мало фильмов", если от 10 до 30 - "Вы классический зритель", а если больше - 
+"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
+
+4) Потренироваться и переписать цикл еще двумя способами*/
+
+const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
 const personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -6,7 +22,36 @@ const personalMovieDB = {
     genres: [],
     privat: false
 };
-const a = prompt('Один из последних просмотенных фильмов?', '');
-const b = prompt('На сколько оцените его?', '');
-personalMovieDB.movies[a] = b;
+
+if (personalMovieDB.count > 30) {
+    alert ('Вы киноман');
+} else if (personalMovieDB.count > 10) {
+        alert ('Вы классически зритель');
+    } else if (personalMovieDB.count > 0) {
+            alert ('Просмотрено довольно мало фильмов');
+        } else {
+            alert ('Произошла ошибка');
+        }
+
+for (let i = 0; i < 2; i++) {
+    let a = '',
+        b = '';
+    let j = a.length;
+    while (a == '' || 50 < j || a == null) {
+        a = prompt('Один из последних просмотренных фильмов?', '');
+        if (a == null) {
+            continue;
+        }
+        j = a.length;
+    }
+    let k = b.length;
+    while (b == '' || 50 < k || b == null) {
+        b = prompt('На сколько оцените его?', '');
+        if (b == null) {
+            continue;
+        }
+        j = b.length;
+    }    
+    personalMovieDB.movies[a] = b;
+}
 console.log(personalMovieDB);
